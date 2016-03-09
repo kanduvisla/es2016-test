@@ -6,15 +6,24 @@ import { Document } from "./elements/document.js";
 import * as fs from 'fs';
 
 // Testing:
-// Create 2 nodes:
-var root = new Node();
-var circle = new DebugCircle();
-// Append one to another:
-root.append(circle);
 
 // Create a document:
 var document = new Document();
+document.attributes.width = '800';
+document.attributes.height = '800';
+
+// Create root:
+var root = new Node();
+root.attributes.transform = 'translate(400,400)';
+
 document.append(root);
+
+// Basic example:
+//var circle = new DebugCircle();
+//root.append(circle);
+
+// Circle Array:
+
 
 var output = document.render();
 console.log(document.render());
