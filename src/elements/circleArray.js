@@ -5,7 +5,7 @@ import { Node } from './node.js';
  */
 export class CircleArray extends Node {
     /**
-     * Get the interface of this element
+     * Get the interface of this element. These are the properties that are editable by the user
      *
      * @returns {{}}
      */
