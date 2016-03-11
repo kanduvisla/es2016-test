@@ -31,8 +31,11 @@ var circle = new DebugCircle();
 
 // Generator:
 var configuration = {
-    width: 800,
-    height: 800,
+    type: 'document',
+    options: {
+        width: 800,
+        height: 800
+    },
     children: [
         {
             type: 'node',
@@ -54,10 +57,10 @@ var configuration = {
 };
 
 var generator = new Generator();
-var document = generator.parse(configuration);
+var svgDocument = generator.parse(configuration);
 
-var output = document.render();
-console.log(document.render());
+var output = svgDocument.render();
+console.log(svgDocument.render());
 
 // Write it to a test file:
 fs.writeFile('test.svg', output, (err) => {
