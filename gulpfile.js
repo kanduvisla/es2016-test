@@ -9,6 +9,7 @@ var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
 
 /**
  * Default task
@@ -46,9 +47,24 @@ gulp.task("browserify", function () {
 });
 
 /**
+ * Sass task
+ */
+gulp.task('sass', function() {
+    return gulp.src('./www/scss/screen.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            precision: 10,
+            onError: console.error.bind(console, 'Sass error:')
+        }))
+        .pipe(sourcemaps.write({includeContent: false}))
+        .pipe(gulp.dest('./www/css'));
+});
+
+/**
  * Watcher
  */
 gulp.task("watch", function () {
     gulp.watch("src/**/*.js", ['default']);
     gulp.watch("dist/www.js", ['browserify']);
+    gulp.watch("www/scss/**/*.scss", ['sass']);
 });
