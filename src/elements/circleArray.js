@@ -3,7 +3,7 @@ import { Node } from './node.js';
 /**
  * The circle array creates an array shaped in a circle
  */
-export class circleArray extends Node {
+export class CircleArray extends Node {
     /**
      * Basic setup
      */
@@ -18,7 +18,7 @@ export class circleArray extends Node {
      */
     render() {
         var output = '';
-        var piPart = Math.PI / this.count;
+        var piPart = (2 * Math.PI) / this.count;
         for (let i=0; i < this.children.length; i++) {
             for (let c=0; c < this.count; c++) {
                 this.children[i].attributes.transform = 'translate(' + 

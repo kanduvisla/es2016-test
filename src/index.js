@@ -3,6 +3,7 @@
 import { Node } from "./elements/node.js";
 import { DebugCircle } from "./elements/debugCircle.js";
 import { Document } from "./elements/document.js";
+import { CircleArray } from "./elements/circleArray.js";
 import * as fs from 'fs';
 
 // Testing:
@@ -19,11 +20,13 @@ root.attributes.transform = 'translate(400,400)';
 document.append(root);
 
 // Basic example:
-//var circle = new DebugCircle();
+var circle = new DebugCircle();
 //root.append(circle);
 
 // Circle Array:
-
+var circleArray = new CircleArray();
+circleArray.append(circle);
+root.append(circleArray);
 
 var output = document.render();
 console.log(document.render());
