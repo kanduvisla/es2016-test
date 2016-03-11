@@ -1,7 +1,5 @@
-import { Node } from "./elements/node.js";
-import { DebugCircle } from "./elements/debugCircle.js";
+import { Factory } from "./elements/factory.js";
 import { Document } from "./elements/document.js";
-import { CircleArray } from "./elements/circleArray.js";
 
 /**
  * Generator class generates a document according to a JSON configuration. This is the heart of the application
@@ -11,7 +9,7 @@ export class Generator {
      * Constructor
      */
     constructor() {
-
+        this.factory = new Factory();
     }
 
     /**
@@ -22,15 +20,6 @@ export class Generator {
      */
     parse(json) {
         var document = new Document();
-
-        // Set width and height:
-        if (json.width) {
-            document.attributes.width = json.width;
-        }
-
-        if (json.height) {
-            document.attributes.height = json.height;
-        }
 
         // Render:
         if (json.children) {
@@ -50,19 +39,7 @@ export class Generator {
         for (let i = 0; i < children.length; i += 1) {
             if (children[i].type) {
                 /** @var {Node} */
-                let child;
-                // Todo: how can the individual elements hook into this?
-                switch (children[i].type) {
-                    case 'node' :
-                        child = new Node();
-                        break;
-                    case 'debugCircle' :
-                        child = new DebugCircle();
-                        break;
-                    case 'circleArray' :
-                        child = new CircleArray();
-                        break;
-                }
+                let child = this.factory.getNode(children[i].type);
                 // Check for attributes:
                 if (children[i].attributes) {
                     child.attributes = children[i].attributes;
