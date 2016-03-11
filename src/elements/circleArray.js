@@ -5,12 +5,28 @@ import { Node } from './node.js';
  */
 export class CircleArray extends Node {
     /**
-     * Basic setup
+     * Get the interface of this element
+     *
+     * @returns {{}}
      */
-    constructor() {
-        super();
-        this.count = 8;
-        this.radius = 100;
+    get interface() {
+        var myInterface = super.interface;
+        // Merge with new options:
+        Object.assign(myInterface, {
+            count : {
+                default: 8,
+                min: 2,
+                max: 64,
+                type: 'slider'
+            },
+            radius : {
+                default : 100,
+                min: 1,
+                max: 9999,
+                type: 'slider'
+            }
+        });
+        return myInterface;
     }
 
     /**
@@ -18,12 +34,12 @@ export class CircleArray extends Node {
      */
     render() {
         var output = '';
-        var piPart = (2 * Math.PI) / this.count;
+        var piPart = (2 * Math.PI) / this.options.count;
         for (let i=0; i < this.children.length; i++) {
-            for (let c=0; c < this.count; c++) {
+            for (let c=0; c < this.options.count; c++) {
                 this.children[i].attributes.transform = 'translate(' + 
-                    (Math.sin(c * piPart) * this.radius) + ',' +
-                    (Math.cos(c * piPart) * this.radius) + ')';
+                    (Math.sin(c * piPart) * this.options.radius) + ',' +
+                    (Math.cos(c * piPart) * this.options.radius) + ')';
                 output += this.children[i].render();
             }
         }

@@ -9,8 +9,26 @@ export class Node {
         this.children = [];
         this.elementName = 'g';
         this.attributes = {};
-        this.x = 0;
-        this.y = 0;
+        this.options = {};
+        this.setDefaultOptions();
+    }
+
+    /**
+     * Set the default options, according to the interface
+     */
+    setDefaultOptions() {
+        for (let option in this.interface) {
+            this.options[option] = this.interface[option].default;
+        }
+    }
+
+    /**
+     * Get the interface of this element
+     *
+     * @returns {{}}
+     */
+    get interface() {
+        return {};
     }
 
     /**
