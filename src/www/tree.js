@@ -1,4 +1,5 @@
 import { Factory } from "../elements/factory.js";
+import { Interface } from "./interface.js";
 
 /**
  * The tree is shown on the side
@@ -47,7 +48,8 @@ export class Tree {
             let child = this.factory.getNode(json.type);
             // @todo render the interface to manage the options
             for (let item in child.interface) {
-                console.log(item);
+                let myInterface = new Interface(child.interface[item]);
+                li.appendChild(myInterface.html);
             }
 
             // Children:
