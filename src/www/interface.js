@@ -1,9 +1,7 @@
-import { Slider } from "interface/slider.js";
-
 /**
  * The interface handles the interface for each node that allows us to configure that node.
  */
-export class Interface {
+export class InterfaceObject {
     /**
      * Constructor
      * @param {Object} item

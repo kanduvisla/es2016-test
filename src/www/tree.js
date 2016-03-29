@@ -1,5 +1,6 @@
 import { Factory } from "../elements/factory.js";
-import { Interface } from "./interface.js";
+import { InterfaceObject } from "./interface.js";
+import { Slider } from "./interface/slider.js";
 
 /**
  * The tree is shown on the side
@@ -48,8 +49,18 @@ export class Tree {
             let child = this.factory.getNode(json.type);
             // @todo render the interface to manage the options
             for (let item in child.interface) {
-                let myInterface = new Interface(child.interface[item]);
-                li.appendChild(myInterface.html);
+                let myInterface;
+                // Check the type:
+                switch (child.interface[item].type) {
+                    case "slider" :
+                        myInterface = new Slider(child.interface[item]);
+                        break;
+                }
+
+                if (myInterface) {
+                    myInterface.prepare();
+                    li.appendChild(myInterface.html);
+                }
             }
 
             // Children:

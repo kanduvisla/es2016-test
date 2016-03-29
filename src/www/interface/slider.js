@@ -1,13 +1,25 @@
-import { Interface } from "../interface.js";
+import { InterfaceObject } from "./../interface.js";
+import throttle from 'lodash/throttle';
 
 /**
  * Slide interface element
  */
-export class Slider extends Interface {
+export class Slider extends InterfaceObject {
     /**
      * Prepare the interface
      */
     prepare() {
-        this.wrapper.innerHtml = 'slider';
+        this.wrapper.innerHTML = `<label>
+            <input type="range" min="${this.item.min}" max="${this.item.max}" value="${this.item.default}" />
+            <span class="value">${this.item.default}</span>
+        </label>`;
+        this.inputElement = this.wrapper.querySelector('input');
+        this.valueElement = this.wrapper.querySelector('.value');
+
+        this.inputElement.addEventListener('change', throttle(::this.inputChangedListener));
+    }
+
+    inputChangedListener() {
+        console.log(this.inputElement.value);
     }
 }
