@@ -33,6 +33,7 @@ export class Tree {
         var ul = document.createElement('ul');
         this.add(ul, json);
         this.wrapper.appendChild(ul);
+        this.json = json;
     }
 
     /**
@@ -63,6 +64,7 @@ export class Tree {
 
                 if (myInterface) {
                     myInterface.prepare();
+                    myInterface.addEventListener('changed', ::this.update);
                     li.appendChild(myInterface.html);
                 }
             }
@@ -77,5 +79,9 @@ export class Tree {
             }
             target.appendChild(li);
         }
+    }
+
+    update() {
+        console.log('hoi');
     }
 }

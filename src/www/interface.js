@@ -9,6 +9,7 @@ export class InterfaceObject {
     constructor(item) {
         this.wrapper = document.createElement('div');
         this.wrapper.className = 'interface';
+        this.listeners = {};
         this.item = item;
     }
 
@@ -25,5 +26,30 @@ export class InterfaceObject {
      */
     get html() {
         return this.wrapper;
+    }
+
+    /**
+     * Register an event
+     * @param eventName
+     * @param callback
+     */
+    addEventListener(eventName, callback) {
+        if (!this.listeners[eventName]) {
+            this.listeners[eventName] = [];
+        }
+        this.listeners[eventName].push(callback)
+    }
+
+    /**
+     * Dispatch an event
+     * @param eventName
+     */
+    dispatchEvent(eventName) {
+        if (this.listeners[eventName]) {
+            for (let nr in this.listeners[eventName]) {
+                this.listeners[eventName][nr]();
+
+            }
+        }
     }
 }
