@@ -24,6 +24,9 @@ body {
       margin-left: 1em;
     }
   }
+  li {
+    margin: 5px 0;
+  }
 }
 
 #main {
@@ -38,4 +41,33 @@ body {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
     margin: auto;
   }
+}
+
+// Interfaces:
+.type {
+  font-weight: bold;
+}
+
+.interface {
+  line-height: 20px;
+  margin: 5px 0;
+}
+
+.name {
+  text-transform: capitalize;
+  font-size: 10px;
+  &:after {
+    content: ': ';
+  }
+}
+
+.value {
+  font-size: 10px;
+  color: #888;
+}
+
+// Inputs:
+input[type="range"] {
+  position: relative;
+  top: 4px;
 }

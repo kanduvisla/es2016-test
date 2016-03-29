@@ -8,6 +8,7 @@ export class InterfaceObject {
      */
     constructor(item) {
         this.wrapper = document.createElement('div');
+        this.wrapper.className = 'interface';
         this.item = item;
     }
 

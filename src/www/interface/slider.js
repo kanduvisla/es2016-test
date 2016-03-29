@@ -10,6 +10,7 @@ export class Slider extends InterfaceObject {
      */
     prepare() {
         this.wrapper.innerHTML = `<label>
+            <span class="name">${this.item.name}</span>
             <input type="range" min="${this.item.min}" max="${this.item.max}" value="${this.item.default}" />
             <span class="value">${this.item.default}</span>
         </label>`;
@@ -19,7 +20,10 @@ export class Slider extends InterfaceObject {
         this.inputElement.addEventListener('change', throttle(::this.inputChangedListener));
     }
 
+    /**
+     * Changed listener
+     */
     inputChangedListener() {
-        console.log(this.inputElement.value);
+        this.valueElement.innerHTML = this.inputElement.value;
     }
 }

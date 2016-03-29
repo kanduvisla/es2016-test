@@ -50,10 +50,14 @@ export class Tree {
             // @todo render the interface to manage the options
             for (let item in child.interface) {
                 let myInterface;
+                // Set the name:
+                let interfaceItem = child.interface[item];
+                interfaceItem.name = item;
+
                 // Check the type:
-                switch (child.interface[item].type) {
+                switch (interfaceItem.type) {
                     case "slider" :
-                        myInterface = new Slider(child.interface[item]);
+                        myInterface = new Slider(interfaceItem);
                         break;
                 }
 
