@@ -77,8 +77,7 @@ gulp.task("watch", function () {
       .require("./src/www/index.js", { entry: true })
       .bundle()
       .on("error", function (err) { console.log("Error: " + err.message) })
-      .pipe(fs.createWriteStream("./dist/www/index.js")
-      )
+      .pipe(fs.createWriteStream("./dist/www/index.js"))
   })
 
   gulp.watch("./src/server/**/*.js", function(evt){
@@ -88,7 +87,6 @@ gulp.task("watch", function () {
       .require("./src/server/index.js", { entry: true })
       .bundle()
       .on("error", function (err) { console.log("Error: " + err.message) })
-      .pipe(fs.createWriteStream("./dist/server/index.js")
-      )
+      .pipe(fs.createWriteStream("./dist/server/index.js"))
   })
 });

@@ -69,6 +69,27 @@ export class Tree {
                 }
             }
 
+            // Attributes:
+            if (json.attributes) {
+                let table = document.createElement('table');
+                for (let key in json.attributes) {
+                    if (json.attributes.hasOwnProperty(key)) {
+                        let row = document.createElement('tr');
+                        let header = document.createElement('th');
+                        header.innerHTML = key;
+                        let cell = document.createElement('td');
+                        // @todo: use interface for this?
+                        let input = document.createElement('input');
+                        input.value = json.attributes[key];
+                        cell.appendChild(input);
+                        row.appendChild(header);
+                        row.appendChild(cell);
+                        table.appendChild(row);
+                    }
+                }
+                li.appendChild(table);
+            }
+
             // Children:
             if (json.children && json.children.length > 0) {
                 var ul = document.createElement('ul');
@@ -81,7 +102,10 @@ export class Tree {
         }
     }
 
-    update() {
-        console.log('hoi');
+  /**
+   * This method is fired when an input field in the tree has changed of value.
+   */
+  update() {
+        // console.log(this.json);
     }
 }
