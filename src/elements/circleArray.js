@@ -22,7 +22,7 @@ export class CircleArray extends Node {
             radius : {
                 default : 100,
                 min: 1,
-                max: 9999,
+                max: 2000,
                 type: 'slider'
             }
         });
@@ -33,11 +33,12 @@ export class CircleArray extends Node {
      * Override render method:
      */
     render() {
+        console.log(this.options);
         var output = '';
         var piPart = (2 * Math.PI) / this.options.count;
         for (let i=0; i < this.children.length; i++) {
             for (let c=0; c < this.options.count; c++) {
-                this.children[i].attributes.transform = 'translate(' + 
+                this.children[i].attributes.transform = 'translate(' +
                     (Math.sin(c * piPart) * this.options.radius) + ',' +
                     (Math.cos(c * piPart) * this.options.radius) + ')';
                 output += this.children[i].render();

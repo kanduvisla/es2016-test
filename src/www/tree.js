@@ -55,6 +55,9 @@ export class Tree {
         let interfaceItem = child.interface[item];
         interfaceItem.name = item;
 
+        if (!json.options) { json.options = {}; }
+        interfaceItem.linkedOptions = json.options;
+
         // Check the type:
         switch (interfaceItem.type) {
           case "slider" :
@@ -106,6 +109,11 @@ export class Tree {
    * This method is fired when an input field in the tree has changed of value.
    */
   update() {
-    // console.log(this.json);
+    // Re-draw the SVG:
+    var svgDocument = this.generator.parse(this.json);
+
+    // Render it in the browser:
+    this.document.getElementById('main').innerHTML = svgDocument.render();
+
   }
 }

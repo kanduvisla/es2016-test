@@ -40,14 +40,22 @@ export class Generator {
             if (children[i].type) {
                 /** @var {Node} */
                 let child = this.factory.getNode(children[i].type);
+
                 // Check for attributes:
                 if (children[i].attributes) {
                     child.attributes = children[i].attributes;
                 }
+
+                // Check for options:
+                if (children[i].options) {
+                    Object.assign(child.options, children[i].options);
+                }
+
                 // Parse children:
                 if (children[i].children) {
                     this.parseChildren(child, children[i].children);
                 }
+
                 // Add it to the target
                 target.append(child);
             }

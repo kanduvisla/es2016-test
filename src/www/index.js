@@ -44,7 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Generate the SVG document:
   var generator = new Generator();
   var svgDocument = generator.parse(configuration);
-
+  
   // Render it in the browser:
   document.getElementById('main').innerHTML = svgDocument.render();
+  
+  // Temporary, should be done with dispatched event:
+  tree.generator = generator;
+  tree.document = document;
 });

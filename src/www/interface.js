@@ -48,7 +48,6 @@ export class InterfaceObject {
         if (this.listeners[eventName]) {
             for (let nr in this.listeners[eventName]) {
                 this.listeners[eventName][nr]();
-
             }
         }
     }

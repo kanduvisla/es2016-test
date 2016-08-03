@@ -25,6 +25,8 @@ export class Slider extends InterfaceObject {
      */
     inputChangedListener() {
         this.valueElement.innerHTML = this.item.default = parseInt(this.inputElement.value);
+        // Update the linked object:
+        this.item.linkedOptions[this.item.name] = this.item.default;
         this.dispatchEvent('changed');
     }
 }
