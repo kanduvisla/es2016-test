@@ -1,6 +1,7 @@
 import {Factory} from "../elements/factory.js";
 import {InterfaceObject} from "./interface.js";
 import {Slider} from "./interface/slider.js";
+import {NodeModel} from "./models/nodeModel.js";
 
 /**
  * The tree is shown on the side
@@ -20,6 +21,8 @@ export class Tree {
         height: 800
       }
     };
+    this.rootNode = new NodeModel();
+    ko.applyBindings(this.rootNode, document.getElementById('tree'));
     this.fill(this.configuration);
   }
 
@@ -29,11 +32,14 @@ export class Tree {
    * @param json
    */
   fill(json) {
-    this.wrapper.innerHTML = '';
-    var ul = document.createElement('ul');
-    this.add(ul, json);
-    this.wrapper.appendChild(ul);
-    this.json = json;
+
+
+
+    // this.wrapper.innerHTML = '';
+    // var ul = document.createElement('ul');
+    // this.add(ul, json);
+    // this.wrapper.appendChild(ul);
+    // this.json = json;
   }
 
   /**
@@ -101,15 +107,15 @@ export class Tree {
         }
         li.appendChild(ul);
       }
-      
+
       // Options:
       var optionsDiv = document.createElement('div');
       optionsDiv.className = 'options';
-      
-      
-      
+
+
+
       li.appendChild(optionsDiv);
-      
+
       target.appendChild(li);
     }
   }
