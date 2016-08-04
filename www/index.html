@@ -8,10 +8,59 @@
 <body>
     <aside id="tree">
         <!-- This is the tree of nodes -->
+        <script type="text/html" id="tree-item-template">
+            <li>
+                <span class="type" data-bind="text:type"></span>
+                <table class="attributes">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach:attributes">
+                        <tr>
+                            <th data-bind="text:key"></th>
+                            <td>
+                                <input type="text" data-bind="text:value"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <a href="#">+ Add New Attribute</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <ul class="interfaces" data-bind="foreach:interfaces">
+                    <li>
+                        <label>
+                            <span class="name" data-bind="text:name"></span>
+                            <!-- ko if:type == 'slider' -->
+                                <input type="range" data-bind="attr:{min:min, max:max, value:value}"/>
+                                <span class="value" data-bind="text:value"></span>
+                            <!-- /ko -->
+                        </label>
+                    </li>
+                </ul>
+                <ul class="children" data-bind="template:{name:'tree-item-template', foreach:children, as:child}"></ul>
+                <div class="options">
+                    <a href="#" class="add">Add Child</a>
+                    <a href="#" class="up">Move Up</a>
+                    <a href="#" class="down">Move Down</a>
+                    <a href="#" class="delete">Delete</a>
+                </div>
+            </li>
+        </script>
+        <!-- Render the tree: -->
+        <ul data-bind="template:{name:'tree-item-template', foreach:document, as:child}"></ul>
     </aside>
     <section id="main">
         <!-- This is where the SVG documents get placed -->
     </section>
+    <script type="text/javascript" src="js/knockout-3.4.0.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
