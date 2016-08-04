@@ -101,6 +101,15 @@ export class Tree {
         }
         li.appendChild(ul);
       }
+      
+      // Options:
+      var optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+      
+      
+      
+      li.appendChild(optionsDiv);
+      
       target.appendChild(li);
     }
   }

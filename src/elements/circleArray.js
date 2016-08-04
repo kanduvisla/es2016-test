@@ -33,7 +33,6 @@ export class CircleArray extends Node {
      * Override render method:
      */
     render() {
-        console.log(this.options);
         var output = '';
         var piPart = (2 * Math.PI) / this.options.count;
         for (let i=0; i < this.children.length; i++) {
